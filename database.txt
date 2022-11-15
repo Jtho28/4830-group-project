@@ -1,0 +1,60 @@
+drop database esports;
+
+create database esports;
+
+use esports;
+
+create table organization (
+org_name varchar(30),
+primary key (org_name)
+);
+
+create table team (
+team_id int,
+roster_id int,
+org_name varchar(30),
+primary key (team_id)
+);
+
+create table roster (
+roster_id int,
+user_name varchar(30),
+primary key (roster_id)
+);
+
+create table league (
+league_id int,
+game varchar(30),
+match_id int,
+primary key (league_id)
+);
+
+create table match_details (
+match_id int,
+date datetime,
+result varchar(30),
+primary key (match_id)
+);
+
+create table match_participants (
+match_id int,
+user_name varchar(30),
+primary key (match_id)
+);
+
+create table user (
+user_name varchar(30),
+password varchar(30),
+org_name varchar(30),
+manager bool,
+owner bool,
+primary key (user_name)
+);
+
+create table invitations (
+user_name varchar(30),
+org_name varchar(30),
+status bool,
+primary key (user_name, org_name)
+);
+
