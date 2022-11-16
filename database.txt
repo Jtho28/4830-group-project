@@ -77,7 +77,7 @@ values
 insert into
 	user (user_name, password, org_id, owner, manager)
 values
-	('Ben', 'Ben123'. 1, false, false),
+	('Ben', 'Ben123', 1, false, false),
 	('Ethan', 'Ethan123', 2, false, false),
 	('Justin', 'Justin123', 3, false, false),
 	('Noah', 'Noah123', 4, false, false);
