@@ -1,3 +1,5 @@
+sudo mysql -u root
+
 drop database esports;
 
 create database esports;
@@ -6,49 +8,41 @@ use esports;
 
 create table organization (
 org_name varchar(30),
-primary key (org_name)
+org_id int,
+primary key (org_id)
 );
 
 create table team (
 team_id int,
-roster_id int,
-org_name varchar(30),
-primary key (team_id)
-);
-
-create table roster (
-roster_id int,
-user_name varchar(30),
-primary key (roster_id)
+org_id int,
+league_id int,
+team_roster mediumtext,
+primary key (team_id, league_id, org_id)
 );
 
 create table league (
+league_name varchar(30),
 league_id int,
 game varchar(30),
-match_id int,
+league_participants mediumtext,
 primary key (league_id)
-);
-
-create table match_details (
-match_id int,
-date datetime,
-result varchar(30),
-primary key (match_id)
-);
-
-create table match_participants (
-match_id int,
-user_name varchar(30),
-primary key (match_id)
 );
 
 create table user (
 user_name varchar(30),
-password varchar(30),
-org_name varchar(30),
-manager bool,
+org_id int,
 owner bool,
+manager bool,
 primary key (user_name)
+);
+
+create table match_details (
+match_id int,
+league_id int,
+date datetime,
+match_participants mediumtext,
+result mediumtext,
+primary key (league_id, match_id)
 );
 
 create table invitations (
@@ -58,3 +52,42 @@ status bool,
 primary key (user_name, org_name)
 );
 
+insert into
+	organization (org_name, org_id)
+values
+	('Red Organization', 1),
+	('Blue Organization', 2),
+	('Yellow Organization', 3),
+	('Green Organization', 4);
+
+insert into
+	team (team_id, org_id, league_id, team_roster)
+values
+	(1, 1, 1, 'Ben'),
+	(1, 2, 1, 'Ethan'),
+	(1, 3, 1, 'Justin'),
+	(1, 4, 1, 'Noah');
+
+insert into
+	league (league_name, league_id, game, league_participants)
+values
+	('Fall Rocket League', 1, 'Rocket League', '1,2,3,4');
+
+insert into
+	user (user_name, org_id, owner, manager)
+values
+	('Ben', 1, false, false),
+	('Ethan', 2, false, false),
+	('Justin', 3, false, false),
+	('Noah', 4, false, false);
+
+insert into
+	match_details (match_id, league_id, date, match_participants, result)
+values
+	(1,1,'2022-12-01 12:00:00', 'Ben,Ethan', 'undecided'),
+	(2,1,'2022-12-02 12:00:00', 'Justin,Noah', 'undecided'),
+	(3,1,'2022-12-03 12:00:00', 'Ben,Noah', 'undecided'),
+	(4,1,'2022-12-04 12:00:00', 'Ethan,Justin', 'undecided'),
+	(5,1,'2022-12-04 14:00:00', 'Noah,Justin', 'undecided'),
+	(6,1,'2022-12-05 12:00:00', 'Ben,Justin', 'undecided'),
+	(7,1,'2022-12-06 12:00:00', 'Ethan,Noah', 'undecided');
