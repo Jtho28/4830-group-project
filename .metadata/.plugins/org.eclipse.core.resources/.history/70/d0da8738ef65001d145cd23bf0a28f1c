@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.login {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+h1 {
+	color: yellow;
+	margin-left: 20px;
+}
