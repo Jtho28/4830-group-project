@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class demo3
  */
-@WebServlet("/demo4")
+@WebServlet("/Login.html")
 public class LoginValidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String dns = "ec2-34-201-172-38.compute-1.amazonaws.com";
+	String dns = "ec2-44-203-160-11.compute-1.amazonaws.com";
 	Connection connection = null;
 	Statement statement = null;
 
@@ -80,11 +80,11 @@ public class LoginValidate extends HttpServlet {
 					String manager = rs.getString("manager");
 
 //Display values
-					out.println("USER NAME: " + username + ", ");
+					/*out.println("USER NAME: " + username + ", ");
 					out.println("PASSWORD: " + password + ", ");
 					out.println("ORG ID: " + orgID + ", ");
 					out.println("OWNER: " + owner + ", ");
-					out.println("MANAGER: " + manager + ", ");
+					out.println("MANAGER: " + manager + ", ");*/
 				}
 			} catch (SQLException e1) {
 // TODO Auto-generated catch block
@@ -123,6 +123,7 @@ public class LoginValidate extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 // TODO Auto-generated method stub
-		doGet(request, response);
+		String inputUser = request.getParameter("username");
+		System.out.println(inputUser);
 	}
 }
