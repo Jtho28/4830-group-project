@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class demo3
  */
-@WebServlet("/Login.html")
+@WebServlet("LoginValidate")
 public class LoginValidate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String dns = "ec2-44-203-160-11.compute-1.amazonaws.com";
+	String dns = "ec2-44-204-16-116.compute-1.amazonaws.com";
 	Connection connection = null;
 	Statement statement = null;
 
@@ -90,6 +90,9 @@ public class LoginValidate extends HttpServlet {
 // TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
+			System.out.println(request.getParameter("username"));
+			
 			// STEP 6: Clean-up environment
 			try {
 				rs.close();
